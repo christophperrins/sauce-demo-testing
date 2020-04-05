@@ -31,4 +31,18 @@ Feature: Login
     When you enter the username "locked_out_user"
     When you enter the password "secret_sauce"
     When you click login button
-    Then an error message should pop up stating you are locked out
+    Then an error message should pop up
+   
+  Scenario Outline: Scenario Outline name: An incorrect username or password is entered
+    Given you are on the login page
+    When you enter the username <username>
+    When you enter the password <password>
+    When you hit the enter key in the password input
+    Then an error message should pop up
+
+    Examples:
+    | username | password |
+    |    "" |   "secret_sauce" |
+    |    "problem_user" |   "" |
+    |    "performance_glitch_user" |   "wrong password" |
+  

@@ -62,7 +62,7 @@ public class LoginStepDef {
 		loginPage.pressEnterOnPasswordInput();
 	}
 
-	@Then("^an error message should pop up stating you are locked out$")
+	@Then("^an error message should pop up$")
 	public void an_error_message_should_pop_up_stating_you_are_locked_out() throws Throwable {
 		LoginPage loginPage = new LoginPage(driver);
 		assertTrue(loginPage.isErrorButtonDisplayed());
