@@ -32,6 +32,7 @@ If applicable, add screenshots to help explain your problem.
 | Title | Description |
 | ----- | ------------ |
 | Browser | Browser being used |
+| Screen size | Screen size being used |
 | Viewport Size | Viewport size being used |
 | Zoom level | Zoom level used i.e. 100% |
 | OS | Operating system used |
