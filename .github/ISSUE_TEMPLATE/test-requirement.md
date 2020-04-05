@@ -11,11 +11,6 @@ assignees: ''
 A description of the summary of the test
 
 **How it is going to be tested**
-* Preconditions
- 1. 
-* Inputs
- 1.
-* Actions
- 1.
-* Expected Outcomes
- 1.
+
+| Preconditions | Inputs | Actions | Expected Outcomes |
+| --------------- | ------- | -------- | ---------------------- |
