@@ -4,6 +4,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
+
 public class TestUtils {
 	
 	public static final WebDriver initialiseDriver(String browser) {
@@ -24,11 +28,22 @@ public class TestUtils {
 		}
 	}
 	
-//	private ExtentReports startReport() {
-//		
-//	}
-//	
-//	private ExtentTest createTest() {
-//		
-//	}
+	static ExtentReports extentReports;
+	
+	public static void startReport(String reportName) {
+		extentReports = new ExtentReports();
+		extentReports.attachReporter(new ExtentHtmlReporter(new ReadConfig().getPropertyValue("extentreport.directory") + "/" + reportName +".html"));
+	}
+	
+	public static void endReport() {
+		extentReports.flush();
+	}
+	
+	public static ExtentTest createTest(String testName) {
+		return extentReports.createTest(testName);
+	}
+		
+	public static void endTest(ExtentTest extentTest) {
+		extentReports.flush();
+	}
 }
