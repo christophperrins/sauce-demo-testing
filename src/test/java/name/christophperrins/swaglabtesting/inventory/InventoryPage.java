@@ -22,7 +22,9 @@ public class InventoryPage {
 	
 	@FindBy(className = "inventory_item_price")
 	private List<WebElement> listOfPrices;
-	
+
+	@FindBy(className = "shopping_cart_link")
+	private WebElement shoppingCart;
 	
 	public InventoryPage(WebDriver driver) {
 		PageFactory.initElements(driver, this);
@@ -47,6 +49,8 @@ public class InventoryPage {
 		return name;
 	}
 	
-	
+	public void clickShoppingCart() {
+		shoppingCart.click();
+	}
 	
 }

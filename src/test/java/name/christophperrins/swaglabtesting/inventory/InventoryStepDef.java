@@ -1,6 +1,5 @@
 package name.christophperrins.swaglabtesting.inventory;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
 import java.io.IOException;
@@ -11,15 +10,14 @@ import org.openqa.selenium.WebDriver;
 
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.MediaEntityBuilder;
-import com.aventstack.extentreports.MediaEntityModelProvider;
 
-import cucumber.api.PendingException;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import name.christophperrins.swaglabtesting.cart.CartPage;
 import name.christophperrins.swaglabtesting.inventoryitem.InventoryItemPage;
 import name.christophperrins.swaglabtesting.utils.TestUtils;
 
@@ -58,34 +56,37 @@ public class InventoryStepDef {
 		inventoryPage.clickOnFirstInstanceOf(arg1);
 		extentTest.createNode("WHEN").info("Clicked on Add to cart");
 	}
-	
+
 	@Then("^it should display (\\d+) next to my cart$")
 	public void it_should_display_next_to_my_cart(int arg1) throws Throwable {
-	    InventoryPage inventoryPage = new InventoryPage(driver);
+		InventoryPage inventoryPage = new InventoryPage(driver);
 		String outputDestination = TestUtils.takeScreenshot(driver, scenario);
-	    if (String.valueOf(arg1).equals(inventoryPage.getNumberOfItemsNextToCart())) {	    	
-	    	extentTest.createNode("Then").pass("Clicked on Add to cart",
-	    			MediaEntityBuilder.createScreenCaptureFromPath(outputDestination).build());
-	    } else{
-	    	extentTest.createNode("Then").fail("Clicked on Add to cart",
-	    			MediaEntityBuilder.createScreenCaptureFromPath(outputDestination).build());
-	    	fail();
-	    };
+		if (String.valueOf(arg1).equals(inventoryPage.getNumberOfItemsNextToCart())) {
+			extentTest.createNode("Then").pass("Clicked on Add to cart",
+					MediaEntityBuilder.createScreenCaptureFromPath(outputDestination).build());
+		} else {
+			extentTest.createNode("Then").fail("Clicked on Add to cart",
+					MediaEntityBuilder.createScreenCaptureFromPath(outputDestination).build());
+			fail();
+		}
+		;
 	}
 
 	@Then("^the session storage key \"([^\"]*)\" should be of length (\\d+)$")
 	public void the_session_storage_key_should_be_of_length(String arg1, int arg2) throws Throwable {
-	    JavascriptExecutor js = ((JavascriptExecutor) driver);
-	    String number = js.executeScript("return JSON.parse(window.sessionStorage.getItem('"+arg1+"')).length;").toString();
-	    String outputDestination = TestUtils.takeScreenshot(driver, scenario);
-	    if (String.valueOf(arg2).equals(number)) {	    	
-	    	extentTest.createNode("Then").pass("Clicked on Add to cart",
-	    			MediaEntityBuilder.createScreenCaptureFromPath(outputDestination).build());
-	    } else{
-	    	extentTest.createNode("Then").fail("Clicked on Add to cart",
-	    			MediaEntityBuilder.createScreenCaptureFromPath(outputDestination).build());
-	    	fail();
-	    };
+		JavascriptExecutor js = ((JavascriptExecutor) driver);
+		String number = js.executeScript("return JSON.parse(window.sessionStorage.getItem('" + arg1 + "')).length;")
+				.toString();
+		String outputDestination = TestUtils.takeScreenshot(driver, scenario);
+		if (String.valueOf(arg2).equals(number)) {
+			extentTest.createNode("Then").pass("Clicked on Add to cart",
+					MediaEntityBuilder.createScreenCaptureFromPath(outputDestination).build());
+		} else {
+			extentTest.createNode("Then").fail("Clicked on Add to cart",
+					MediaEntityBuilder.createScreenCaptureFromPath(outputDestination).build());
+			fail();
+		}
+		;
 	}
 
 	@When("^i click on an inventory item$")
@@ -93,31 +94,62 @@ public class InventoryStepDef {
 		InventoryPage inventoryPage = new InventoryPage(driver);
 		String clickedItem = inventoryPage.clickInventoryItem();
 		tempValue = clickedItem;
-		extentTest.createNode("WHEN").info("Clicked on "+clickedItem);
+		extentTest.createNode("WHEN").info("Clicked on " + clickedItem);
 
 	}
 
 	@Then("^i am brought to an inventory-item page with the same title$")
 	public void i_am_brought_to_an_inventory_item_page_with_the_same_title() throws Throwable {
-	    ExtentTest extentTest = this.extentTest.createNode("Then");
+		ExtentTest extentTest = this.extentTest.createNode("Then");
 		String itemUrl = InventoryItemPage.INVENTORY_ITEM_URL;
 		if (itemUrl.equals(driver.getCurrentUrl().substring(0, itemUrl.length()))) {
 			extentTest.pass("Taken to the correct page");
-		}else {
+		} else {
 			extentTest.fail("Taken to incorrect page");
-		};
-		
+		}
+		;
+
 		InventoryItemPage inventoryItemPage = new InventoryItemPage(driver);
-		
-	    String outputDestination = TestUtils.takeScreenshot(driver, scenario);
-		if(inventoryItemPage.nameOfItem().equals(tempValue)) {
-	    	extentTest.pass("Brought to item page",
-	    			MediaEntityBuilder.createScreenCaptureFromPath(outputDestination).build());
-		}else {
-			extentTest.fail("Brought to item page",			
+
+		String outputDestination = TestUtils.takeScreenshot(driver, scenario);
+		if (inventoryItemPage.nameOfItem().equals(tempValue)) {
+			extentTest.pass("Brought to item page",
+					MediaEntityBuilder.createScreenCaptureFromPath(outputDestination).build());
+		} else {
+			extentTest.fail("Brought to item page",
 					MediaEntityBuilder.createScreenCaptureFromPath(outputDestination).build());
 		}
 
+	}
+
+	@When("^I click on the cart icon$")
+	public void i_click_on_the_cart_icon() throws Throwable {
+		InventoryPage inventoryPage = new InventoryPage(driver);
+		inventoryPage.clickShoppingCart();
+		extentTest.createNode("WHEN").info("Cart clicked");
+	}
+
+	@Then("^I am taken to the cart webpage$")
+	public void i_am_taken_to_the_cart_webpage() throws Throwable {
+		if (driver.getCurrentUrl().equals(CartPage.CART_URL)) {
+			extentTest.createNode("THEN").pass("taken to cart page");
+		} else {
+			extentTest.createNode("THEN").fail("not taken to cart page");
+		}
+	}
+
+	@Then("^there are three items inside$")
+	public void there_are_three_items_inside() throws Throwable {
+		CartPage cartPage = new CartPage(driver);
+		String outputDestination = TestUtils.takeScreenshot(driver, scenario);
+
+		if (cartPage.numberOfItemsInBasket() == 3) {
+			extentTest.createNode("THEN").pass("Correct number of items in basket",
+					MediaEntityBuilder.createScreenCaptureFromPath(outputDestination).build());
+		} else {
+			extentTest.createNode("THEN").fail("Incorrect number of items in basket",
+					MediaEntityBuilder.createScreenCaptureFromPath(outputDestination).build());
+		}
 	}
 
 //	@When("^I sort A to Z$")
@@ -191,7 +223,5 @@ public class InventoryStepDef {
 //	    // Write code here that turns the phrase above into concrete actions
 //	    throw new PendingException();
 //	}
-
-
 
 }

@@ -19,6 +19,15 @@ Feature: Inventory
     When i click on an inventory item
     Then i am brought to an inventory-item page with the same title
     
+    Scenario: I click add to cart on multiple items and then view them in the cart
+    Given I am on the Inventory webpage
+    When I click "ADD TO CART" on an item
+    And I click "ADD TO CART" on an item
+    And I click "ADD TO CART" on an item
+    And I click on the cart icon
+    Then I am taken to the cart webpage
+    And there are three items inside
+
     # Scenario: I sort by alphabetically A to Z
     # Given I am on the inventory webpage
     # When I sort A to Z
