@@ -9,7 +9,7 @@ public class OverviewPage {
 
 	public static final String CHECKOUT_URL = "https://www.saucedemo.com/checkout-step-two.html";
 	
-	@FindBy(className = "cart_button ")
+	@FindBy(className = "cart_button")
 	private WebElement finish;
 	
 	public OverviewPage(WebDriver driver) {
