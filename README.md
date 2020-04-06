@@ -7,6 +7,7 @@ It uses:
  - screenshots
  - POM design pattern
  - Cross-broswer testing
+ - Behaviour driven development using cucumber
 
 To run this application, download maven and add it to your path.
 
