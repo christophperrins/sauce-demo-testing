@@ -23,10 +23,7 @@ public class LoginPage {
 		} )	
 	private WebElement loginButton;
 	
-	@FindBys( {
-		@FindBy(className = "login-box"),
-		@FindBy(className = "error-button")
-	})
+	@FindBy(className = "error-button")
 	private WebElement errorButton;
 	
 	public LoginPage(WebDriver driver) {

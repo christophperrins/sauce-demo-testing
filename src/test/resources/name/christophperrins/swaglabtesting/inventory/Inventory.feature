@@ -20,7 +20,7 @@ Feature: Inventory
     Then i am brought to an inventory-item page with the same title
     
     Scenario: I click add to cart on multiple items and then view them in the cart
-    Given I am on the Inventory webpage
+    Given I am on the inventory webpage
     When I click "ADD TO CART" on an item
     And I click "ADD TO CART" on an item
     And I click "ADD TO CART" on an item

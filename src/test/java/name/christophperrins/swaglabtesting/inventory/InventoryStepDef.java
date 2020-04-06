@@ -31,7 +31,6 @@ public class InventoryStepDef {
 	@Before
 	public void setUp(Scenario scenario) {
 		this.scenario = scenario;
-		System.setProperty("browser", "chrome");
 		extentTest = InventoryTest.extentTest.createNode(scenario.getName());
 		String browser = System.getProperty("browser");
 		driver = TestUtils.initialiseDriver(browser);
