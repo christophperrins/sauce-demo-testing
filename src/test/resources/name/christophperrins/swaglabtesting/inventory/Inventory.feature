@@ -19,34 +19,34 @@ Feature: Inventory
     When i click on an inventory item
     Then i am brought to an inventory-item page with the same title
     
-    Scenario: I sort by alphabetically A to Z
-    Given I am on the inventory webpage
-    When I sort A to Z
-    Then i the inventory items should appear in alphabetical order
+    # Scenario: I sort by alphabetically A to Z
+    # Given I am on the inventory webpage
+    # When I sort A to Z
+    # Then i the inventory items should appear in alphabetical order
 
-    Scenario: I sort by alphabetically Z to A
-    Given I am on the inventory webpage
-    When I sort Z to A
-    Then i the inventory items should appear in reverse alphabetical order
+    # Scenario: I sort by alphabetically Z to A
+    # Given I am on the inventory webpage
+    # When I sort Z to A
+    # Then i the inventory items should appear in reverse alphabetical order
 
-    Scenario: I sort price low to high
-    Given I am on the inventory webpage
-    When I sort low to high
-    Then i the inventory items should appear in order from least expensive to most expensive
+    # Scenario: I sort price low to high
+    # Given I am on the inventory webpage
+    # When I sort low to high
+    # Then i the inventory items should appear in order from least expensive to most expensive
 
-    Scenario: I sort price high to low
-    Given I am on the inventory webpage
-    When I sort high to low
-    Then I the inventory items should appear in order from most expensive to least expensive
+    # Scenario: I sort price high to low
+    # Given I am on the inventory webpage
+    # When I sort high to low
+    # Then I the inventory items should appear in order from most expensive to least expensive
 
-    Scenario: I am on a small screen
-    Given I am on the inventory webpage
-    When I am on a screen less than 1200 px in width
-    Then each item should appear below one another
+    # Scenario: I am on a small screen
+    # Given I am on the inventory webpage
+    # When I am on a screen less than 1200 px in width
+    # Then each item should appear below one another
 
-    Scenario: I am on a large screen
-    Given I am on the inventory webpage
-    When I am on a screen more than 1300 px in width
-    Then each item should be next to another item
+    # Scenario: I am on a large screen
+    # Given I am on the inventory webpage
+    # When I am on a screen more than 1300 px in width
+    # Then each item should be next to another item
     
      
