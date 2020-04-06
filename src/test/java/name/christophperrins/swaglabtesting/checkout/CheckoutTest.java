@@ -1,4 +1,4 @@
-package name.christophperrins.swaglabtesting.cart;
+package name.christophperrins.swaglabtesting.checkout;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -10,7 +10,7 @@ import cucumber.api.junit.Cucumber;
 import name.christophperrins.swaglabtesting.utils.TestUtils;
 
 @RunWith(Cucumber.class)
-public class CartTest {
+public class CheckoutTest {
 
 	protected static ExtentTest extentTest;
 
