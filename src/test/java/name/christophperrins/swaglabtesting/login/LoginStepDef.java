@@ -67,11 +67,13 @@ public class LoginStepDef {
 
 	@Then("^the application should bring you to the inventory screen$")
 	public void the_application_should_bring_you_to_the_inventory_screen() throws Throwable {
+		String outputDestination = TestUtils.takeScreenshot(driver, scenario);
 		if (InventoryPage.INVENTORY_URL.equals(driver.getCurrentUrl())) {
-			String outputDestination = TestUtils.takeScreenshot(driver, scenario);
 			extentTest.createNode("THEN").pass("Inventory screen",
 					MediaEntityBuilder.createScreenCaptureFromPath(outputDestination).build());
 		} else {
+			extentTest.createNode("THEN").fail("'Inventory screen'",
+					MediaEntityBuilder.createScreenCaptureFromPath(outputDestination).build());
 			fail();
 		}
 	}
